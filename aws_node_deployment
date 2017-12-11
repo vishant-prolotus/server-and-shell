@@ -1,0 +1,35 @@
+go to aws instance terminal and follow the following steps
+
+sudo su
+sudo apt install libapache2-mod-proxy-uwsgi
+sudo a2enmod rewrite on
+sudo a2enmod proxy_http on
+sudo service apache2 restart
+
+go to directory given below and look for a .conf file. by default it is saved as 000.default.config
+
+sudo gedit /etc/apache2/sites-enabled/filename.config //if gedit is not available use vim
+
+delete all the content of the default file and replace it with
+
+<VirtualHost *:80>
+ServerName yourinstancename or ip:80
+ServerAlias yourinstancename or ip
+DocumentRoot "/home/path to folder"
+ServerAdmin root@localhost
+ErrorLog ${APACHE_LOG_DIR}/dev.error.log
+CustomLog ${APACHE_LOG_DIR}/dev.access.log combined
+<Location />
+Allow from all                                                                                                                                                
+</Location>
+RewriteEngine On
+RewriteCond %{HTTP:Upgrade} =websocket [NC]
+RewriteRule /(.*)           ws://localhost:4000/$1 [P,L]
+RewriteCond %{HTTP:Upgrade} !=websocket [NC]
+RewriteRule /(.*)           http://localhost:4000/$1 [P,L]
+ProxyPassReverse / http://localhost:4000/
+Timeout 600
+ProxyTimeout 600
+</VirtualHost>
+
+

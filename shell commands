@@ -1,0 +1,125 @@
+sudo pkill mongod //stops mongo server
+//eventsource
+
+
+
+
+
+
+CREATE TABLE `ContractPDF` (
+  `idContractPDF` int(11) NOT NULL AUTO_INCREMENT,
+  `ContractPDF_name` varchar(45) NOT NULL,
+  `USER_ID` int(11) NOT NULL,
+  `Contract_ABI` text,
+  `Contract_ADDRESS` varchar(100),
+  PRIMARY KEY (`idContractPDF`),
+  UNIQUE KEY `idContractPDF_UNIQUE` (`idContractPDF`),
+  UNIQUE KEY `ContractPDF_name_UNIQUE` (`ContractPDF_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+
+
+
+
+
+
+
+CREATE TABLE `myapp`.`Users` (
+  `idUsers` INT NOT NULL AUTO_INCREMENT,
+  `User_Name` VARCHAR(45) NOT NULL,
+  `Password` VARCHAR(45) NOT NULL,
+  `Email` VARCHAR(45) NOT NULL,
+  `Phone` INT NOT NULL,
+  `User_Type` VARCHAR(45) NOT NULL,
+  `Hash` VARCHAR(45) NOT NULL,
+  `Verify` VARCHAR(45) NOT NULL,
+  `Expire_date` DATE NOT NULL,
+  PRIMARY KEY (`idUsers`),
+  UNIQUE INDEX `Email_UNIQUE` (`Email` ASC));
+
+
+
+
+shubhabrata@PRO-IT-LAP022:~/Desktop$ mysql -u contract_gen -h sofoaws-demo-mysql.cewomt2vf3jm.us-east-2.rds.amazonaws.com --password='To8Ahd5Ui0oRam5' contract_gen_db < myapp_Users.sql
+
+shubhabrata@PRO-IT-LAP022:~/Desktop$ mysql -u contract_gen -h sofoaws-demo-mysql.cewomt2vf3jm.us-east-2.rds.amazonaws.com --password='To8Ahd5Ui0oRam5' contract_gen_db < myapp_Subscriptions.sql
+
+/// import file
+
+
+shubhabrata@PRO-IT-LAP022:~/Desktop$ mysql -u contract_gen -h sofoaws-demo-mysql.cewomt2vf3jm.us-east-2.rds.amazonaws.com --password='To8Ahd5Ui0oRam5' contract_gen_db -A
+
+/////// ssh connnection mysql
+
+
+mysql> show databases;
+
+mysql> use contract_gen_db
+
+mysql> SHOW COLUMNS FROM ContractPDF;
+
+mysql> SELECT * FROM ContractPDF;
+
+mysql> show tables;
+
+
+show processlist;
+
+/// show all process in queue
+
+
+
+//kill alll process in mysql server
+
+for id in $(mysql -u contract_gen -h sofoaws-demo-mysql.cewomt2vf3jm.us-east-2.rds.amazonaws.com --password='To8Ahd5Ui0oRam5' contract_gen_db -A -e "show processlist;"| awk '{print $1}'); do mysql -u contract_gen -h sofoaws-demo-mysql.cewomt2vf3jm.us-east-2.rds.amazonaws.com --password='To8Ahd5Ui0oRam5' contract_gen_db -A -e "kill $id ; " ;done
+
+
+
+
+
+////export import
+sudo mysqldump -f -u root --password="vishant@123" myapp > smartcontract.sql
+
+
+mysql -f -u user --password="vdrhvhir" -h hostname databasename < filename.sql
+
+sudo mysql -f -u root --password="vishant@123" -h localhost  exchange < exchange_address_master.sql
+
+
+///mongodb import export
+
+/// export multiple collections in a directory
+mongodump -d aml -o vishantbackup
+
+//// export single collection
+mongoexport -d aml -c users --out users.json
+
+
+///import single collection in file
+
+mongorestore -d databasename -c collectionname  filename.bson
+
+////import single json file in mongodb
+
+mongoimport --db dbName --collection collectionName --file fileName.json --jsonArray
+
+
+
+
+
+
+
+
+///  find prosess id with port id 
+sudo netstat -nlp | grep :80
+
+//kill single process with proces id 
+kill -s KILL [PID]
+
+///kill multiple process with process name
+killall -s 9 [process name]
+
+
+
+
+
+
