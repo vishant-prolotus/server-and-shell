@@ -1,0 +1,35 @@
+geth --datadir node4 --networkid 98711 --nodiscover --identity "meftual-node4" --rpc --rpccorsdomain "https://remix.ethereum.org" console 2>>/dev/pts/1
+
+web3.eth.getBalance("0xa529e98066e9b96c8119868e8cf3d66b33364493")
+
+personal.unlockAccount("0x471b6e57d2505d57929707d3a7d6d5eda49b64dc","vishant",0)
+
+geth --datadir node4 --networkid 98711 --nodiscover --identity "meftual-node4" --rpc --rpccorsdomain "*" --rpcport "8545" --rpcapi "db,eth,net,web3" console 2>>/dev/pts/2
+
+
+
+MedicalForm.deployed().then(function(instance) { return instance.set("wekdbejhbjhebfebfierhfiuehrfiuerhfiuebebehkjevkjbekjvbefkvbefhvb",{from:"0xa529e98066e9b96c8119868e8cf3d66b33364493"}).then(console.log());
+
+
+MedicalForm.deployed().then(function(instance) { return instance.get().then(console.log());
+
+
+tty
+
+
+sudo add-apt-repository ppa:ethereum/ethereum
+sudo apt-get update
+sudo apt-get install solc
+which solc
+
+admin.setSolc("/usr/bin/solc")
+
+
+admin.startRPC("127.0.0.1", 8545, "*", "web3,db,net,eth")
+
+
+
+geth --fast --cache=1024 --testnet
+
+
+geth --datadir node4 init genesis.json
