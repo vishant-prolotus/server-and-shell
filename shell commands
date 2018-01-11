@@ -119,6 +119,32 @@ kill -s KILL [PID]
 killall -s 9 [process name]
 
 
+//run a .sh file 
+
+1) give executable permision to the file chmod +x /path/to/your/file/filename.sh
+2) execute the file ./filename.sh
+
+
+     //////////////////file transfer/upload
+
+scp -i /home/shubhabrata/Downloads/cnk_cali_312018.pem /home/shubhabrata/smg.txt ubuntu@54.215.120.175:/tmp/
+
+scp -i -r /home/shubhabrata/Downloads/cnk_cali_312018.pem /home/shubhabrata/todaynew/CNK.tar.gz ubuntu@54.215.120.175:/tmp/
+
+      //////////////////////file transfer/download
+
+$scp -i ~/Desktop/amazon.pem ubuntu@ec2-54-166-128-20.compute-1.amazonaws.com:/data/ecoli_ref-5m-trim.fastq.gz ~/Download/
+
+ssh -i /home/shubhabrata/Downloads/cnk_cali_312018.pem ubuntu@54.215.120.175
+
+   //////////////// move file from one directory to other
+mv  -v ~/Downloads/* ~/Videos/
+
+   //////////////////// copy file from one directory to other
+ sudo cp john-1.7.9.tar.gz /opt/
+
+/////////////////////////////  extract tar file 
+tar xf /path/to/file/to extract
 
 
 
