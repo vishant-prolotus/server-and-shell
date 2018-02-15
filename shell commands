@@ -1,3 +1,59 @@
+/////////////upgrade whole system
+sudo apt dist-upgrade -y
+
+
+/////////////delete mysql completely
+sudo apt-get purge mysql-server mysql-client mysql-common mysql-server-core-5.5 mysql-client-core-5.5
+sudo rm -rf /etc/mysql /var/lib/mysql
+sudo apt-get autoremove
+sudo apt-get autoclean
+
+//////////////install mysql
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install mysql-server
+
+
+
+
+
+
+
+first of all, type this on your console or terminal
+
+ps -ef | grep supervisord
+You will get some pid of supervisord just like these
+
+root 2641 12938 0 04:52 pts/1 00:00:00 grep --color=auto supervisord
+
+root 29646 1 0 04:45 ? 00:00:00 /usr/bin/python /usr/local/bin/supervisord
+if you get output like that, your pid is the second one. then if you want to shut down your supervisord you can do this
+
+kill -s SIGTERM 29646   or pkill processid
+hope it helpful. ref: http://supervisord.org/running.html#signals
+
+
+
+
+
+
+
+
+
+
+
+
+node-inspector for debugging node app
+
+link : https://github.com/node-inspector/node-inspector
+
+  supervisor  restart node app when crash 
+
+link :https://www.npmjs.com/package/supervisor
+
+
+
+
 sudo pkill mongod //stops mongo server
 //eventsource
 
@@ -125,6 +181,17 @@ killall -s 9 [process name]
 2) execute the file ./filename.sh
 
 
+
+////////////////simple ssh connection
+   ssh usernemae@hostname
+
+////////////////file transfer download
+
+scp loggy@sofoinsure_alpha.sofodev.co:/tmp/fabric-client-kvs_peerOrg1/ /tmp/ 
+            or
+rsync -Prvah loggy@sofoinsure_alpha.sofodev.co:/tmp/fabric-client-kvs_peerOrg1/ /tmp/
+
+
      //////////////////file transfer/upload
 
 scp -i /home/shubhabrata/Downloads/cnk_cali_312018.pem /home/shubhabrata/smg.txt ubuntu@54.215.120.175:/tmp/
@@ -145,7 +212,34 @@ mv  -v ~/Downloads/* ~/Videos/
 
 /////////////////////////////  extract tar file 
 tar xf /path/to/file/to extract
+tar -xzvf archive.tar.gz
+
+/////////////////compress tar file
+
+tar -czvf name-of-archive.tar.gz /path/to/directory-or-file
+
+-c: Create an archive.
+-z: Compress the archive with gzip.
+-v: Display progress in the terminal while creating the archive, also known as “verbose” mode. The v is always optional in these commands, but it’s helpful.
+-f: Allows you to specify the filename of the archive.
 
 
 
+///////////////////       bigchaindb install
+
+
+
+https://docs.mongodb.com/v3.4/tutorial/install-mongodb-on-ubuntu/       ///upgrade mongodb to version 3.4
+
+
+https://docs.bigchaindb.com/projects/server/en/latest/quickstart.html    ///follow documentation for bigchaindb installation and attach with mongodb
+
+
+https://docs.bigchaindb.com/projects/js-driver/en/latest/usage.html        ///bigchaindb node driver connection 
+
+
+
+///////////////////// change mode of a folder
+sudo chmod -R a+rw Deploycontact/
+   a:all, r:read,w:wrie 
 

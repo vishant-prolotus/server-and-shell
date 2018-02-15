@@ -1,0 +1,75 @@
+bigchaindb start
+
+ sudo mongod --replSet=bigchain-rs    start mongodb
+
+ bigchaindb start    start bigchaindb
+
+
+
+
+
+
+
+
+
+
+
+map port 8080 to 80 of your apache server
+
+<VirtualHost *:80>
+ServerName http://192.168.0.124:80
+ServerAlias http://192.168.0.124
+DocumentRoot "/home/"
+ServerAdmin root@localhost
+ErrorLog ${APACHE_LOG_DIR}/dev.error.log
+CustomLog ${APACHE_LOG_DIR}/dev.access.log combined
+<Location />
+Allow from all                                                                                                                                                
+</Location>
+RewriteEngine On
+RewriteCond %{HTTP:Upgrade} =websocket [NC]
+RewriteRule /(.*)           ws://localhost:8080/$1 [P,L]
+RewriteCond %{HTTP:Upgrade} !=websocket [NC]
+RewriteRule /(.*)           http://localhost:8080/$1 [P,L]
+ProxyPassReverse / http://localhost:4000/
+Timeout 600
+ProxyTimeout 600
+</VirtualHost>
+
+
+download prebuilt package from https://ipfs.io/docs/install/
+
+unzip the file 
+
+go to directory and run install.sh
+
+run  ipfs init and save generated hash 
+
+run ipfs cat ipfs/hash/readme to check intallation ( this will read file and show output in console)
+
+run ipfs daemon  to run the node ( your node is up now)
+
+run ipfs swarm peers to see connected peers (the peers in your network)
+
+run  ipfs swarm connect /ip4/104.131.131.82/tcp/4001/ipfs/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ to connect with particullar peer (there the hash at last is the hash which is generated at the time of ipfs init command and the ip is the ip of machine or node you wants to connect with)
+
+run ipfs add -r /path/to/file (this will add file to ipfs and provide a hash whish will be used to get the file)
+
+run http://192.168.0.124/ipfs/QmXguBYK1jH1p1ZAvjwJMjS3ocVBCc5yRYraBXMEEXGxJU (this command will retrieve the data corresponding to the hash provided. if you are in a network then this command will also work with localhost:8080 but for accessing it from anywhere you have to host atleast one node of the network )
+
+ipfs use caching so if a node shuts down for a while its recentlly searched contend can still be retrieved from the node that requested it for data.
+
+to save some file downloaded from other ipfs node permanentally on your system locally run ipfs pin add hashofthefile
+
+
+pinning 
+
+
+Pinning is a very important concept in ipfs. ipfs semantics try to make it feel like every single object is local, there is no "retrieve this file for me from a remote server", just ipfs cat or ipfs get which act the same way no matter where the actual object is located. While this is nice, sometimes you want to be able to control what you keep around. Pinning is the mechanism that allows you to tell ipfs to always keep a given object local. ipfs has a fairly aggressive caching mechanism that will keep an object local for a short time after you perform any ipfs operation on it, but these objects may get garbage collected fairly regularly. To prevent that garbage collection simply pin the hash you care about. Objects added through ipfs add are pinned recursively by default.
+
+
+
+
+
+
+

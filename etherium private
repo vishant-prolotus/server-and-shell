@@ -2,9 +2,9 @@ geth --datadir node4 --networkid 98711 --nodiscover --identity "meftual-node4" -
 
 web3.eth.getBalance("0xa529e98066e9b96c8119868e8cf3d66b33364493")
 
-personal.unlockAccount("0x471b6e57d2505d57929707d3a7d6d5eda49b64dc","vishant",0)
+personal.unlockAccount("0x8511b68405c0269e0234928c7095682ac9d4aaac","vishant",0)
 
-geth --datadir node4 --networkid 98711 --nodiscover --identity "meftual-node4" --rpc --rpccorsdomain "*" --rpcport "8545" --rpcapi "db,eth,net,web3" console 2>>/dev/pts/2
+geth --datadir node4 --networkid 98711 --nodiscover --identity "meftual-node4" --rpc --rpccorsdomain "*" --rpcport "8545" --rpcapi "db,eth,net,web3,personal" console 2>>/dev/pts/4
 
 
 
@@ -33,3 +33,16 @@ geth --fast --cache=1024 --testnet
 
 
 geth --datadir node4 init genesis.json
+
+
+
+
+
+QmS4ustL54uo8FzR9455qaxZwuMiUhyvMcX9Ba8nUH4uVv
+
+ipfs cat /ipfs/QmS4ustL54uo8FzR9455qaxZwuMiUhyvMcX9Ba8nUH4uVv/readme
+
+
+http://127.0.0.1:8080/ipfs/QmVcvacAvbTDewpWVjkAtpEif973ZkVojiSv4FuJNxtRjZ/
+
+https://ipfs.io/ipfs/QmVcvacAvbTDewpWVjkAtpEif973ZkVojiSv4FuJNxtRjZ/
